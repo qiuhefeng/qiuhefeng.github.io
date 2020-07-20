@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="generator" content="Hexo 3.9.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    save_scroll: false,
+    copycode: {"enable":false,"show_result":false,"style":null},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="Vim是从vi演变过来的编辑器，支持可扩展。它的优点之一是可以脱离鼠标使用键盘进行高效的编辑，同时也有很多好用的插件用来提高效率。虽然它的入门比较难，但是随着使用时间增加，会越来越体会到它的高效和方便。 本文主要介绍Vim的配置和常用插件介绍，不涉及Vim的使用。">
+<meta name="keywords" content="python,运维,开发,DevOps,SRE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim">
+<meta property="og:url" content="http://www.qiuhefeng.com/Vim/index.html">
+<meta property="og:site_name" content="邱鹤峰的网络博客">
+<meta property="og:description" content="Vim是从vi演变过来的编辑器，支持可扩展。它的优点之一是可以脱离鼠标使用键盘进行高效的编辑，同时也有很多好用的插件用来提高效率。虽然它的入门比较难，但是随着使用时间增加，会越来越体会到它的高效和方便。 本文主要介绍Vim的配置和常用插件介绍，不涉及Vim的使用。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog-1300411193.cos.ap-shanghai.myqcloud.com/7.jpg">
+<meta property="og:updated_time" content="2020-07-20T05:38:24.144Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim">
+<meta name="twitter:description" content="Vim是从vi演变过来的编辑器，支持可扩展。它的优点之一是可以脱离鼠标使用键盘进行高效的编辑，同时也有很多好用的插件用来提高效率。虽然它的入门比较难，但是随着使用时间增加，会越来越体会到它的高效和方便。 本文主要介绍Vim的配置和常用插件介绍，不涉及Vim的使用。">
+<meta name="twitter:image" content="https://blog-1300411193.cos.ap-shanghai.myqcloud.com/7.jpg">
+  <link rel="canonical" href="http://www.qiuhefeng.com/Vim/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Vim | 邱鹤峰的网络博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  <div class="container sidebar-position-left">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">邱鹤峰的网络博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+  </ul>
+
+    
+
+</nav>
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.qiuhefeng.com/Vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="邱鹤峰">
+      <meta itemprop="description" content="Live in the present. Real Moments.">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱鹤峰的网络博客">
+    </span>
+      <header class="post-header">
+
+        
+          <h2 class="post-title" itemprop="name headline">Vim
+
+            
+          </h2>
+        
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-16 17:36:44" itemprop="dateCreated datePublished" datetime="2020-07-16T17:36:44+08:00">2020-07-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-20 13:38:24" itemprop="dateModified" datetime="2020-07-20T13:38:24+08:00">2020-07-20</time>
+              </span>
+            
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+            
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/Vim/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/Vim/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://blog-1300411193.cos.ap-shanghai.myqcloud.com/7.jpg" alt="Vim"></p>
+<p>Vim是从vi演变过来的编辑器，支持可扩展。它的优点之一是可以脱离鼠标使用键盘进行高效的编辑，同时也有很多好用的插件用来提高效率。虽然它的入门比较难，但是随着使用时间增加，会越来越体会到它的高效和方便。</p>
+<p>本文主要介绍Vim的配置和常用插件介绍，不涉及Vim的使用。</p>
+<a id="more"></a>
+
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>各系统的安装方式可查看官方仓库的README文档。 <a href="https://github.com/vim/vim" rel="noopener external nofollow noreferrer" target="_blank">官方仓库</a><br>Windows系统，不建议中中文官网下载安装，推荐官方仓库。<a href="https://github.com/vim/vim-win32-installer/releases" rel="noopener external nofollow noreferrer" target="_blank">Win官方仓库</a><br>MacOS系统，可以安装macvim，使用<code>brew install macvim</code>命令。  </p>
+<h1 id="常用配置"><a href="#常用配置" class="headerlink" title="常用配置"></a>常用配置</h1><p>进入Vim或MacVim后在命令模式下输入<code>:e $MYVIMRC</code>后编辑Vim的配置文件。配置文件在用户根目录下<code>.vimrc</code>。<br>修改配置文件后，需要<code>source $MYVIMRC</code>才能配置生效。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br><span class="line">&quot; Common Configration</span><br><span class="line">set encoding=utf-8  &quot; 编码</span><br><span class="line">set fileencodings=utf-8,chinese,latin-1,gbk,gb18030,gk2312</span><br><span class="line">set fileencoding=utf-8</span><br><span class="line">set termencoding=utf-8</span><br><span class="line">&quot; 解决console提示信息输出乱码</span><br><span class="line">language message zh_CN.utf-8</span><br><span class="line">set nocompatible    &quot; 关闭与vi的兼容模式</span><br><span class="line">set nu              &quot; 设置显示行号</span><br><span class="line">set nowrap          &quot; 不换行显示</span><br><span class="line">set showmatch       &quot; 显示匹配的括号</span><br><span class="line">set scrolloff=3     &quot; 距离顶部和底部3行</span><br><span class="line">set hlsearch        &quot; 搜索高亮</span><br><span class="line">syntax on           &quot; 语法高亮</span><br><span class="line">set expandtab       &quot; 自动将tab转化成空格</span><br><span class="line">set tabstop=4       &quot; 设置tab长度</span><br><span class="line">set shiftwidth=4    &quot; 同上</span><br><span class="line">set smarttab</span><br><span class="line">set laststatus=2    &quot; 命令行为两行</span><br><span class="line">set cursorline      &quot; 突出显示当前行</span><br><span class="line">set cursorcolumn    &quot; 突出显示当前列</span><br><span class="line">set colorcolumn=79  &quot; 超过80长度提示</span><br><span class="line">set mouse=a         &quot; 鼠标可用</span><br><span class="line">set autoread        &quot; 文件自动检测外部更改</span><br><span class="line">set showcmd         &quot; 显示输入的命令</span><br><span class="line">set noeb            &quot; 关闭输入错误提示声音</span><br><span class="line">&quot;set clipboard+=unnamed &quot; 共享剪贴板</span><br><span class="line">set guioptions-=L   &quot; 隐藏左侧滚动条</span><br><span class="line">set guioptions-=r   &quot; 隐藏右侧滚动条</span><br><span class="line">&quot; 禁用自动备份</span><br><span class="line">set nobackup</span><br><span class="line">set nowritebackup</span><br><span class="line">set noswapfile</span><br><span class="line">set helplang=cn</span><br><span class="line">&quot;let &amp;winwidth=90  &quot; 分屏，切换到焦点窗口时自动调整宽度.相同的有&amp;columns</span><br><span class="line">&quot; let &amp;winheight=&amp;lines*7/10 &quot; 同上，自动高度</span><br><span class="line">&quot; 代码折叠</span><br><span class="line">set foldmethod=indent</span><br><span class="line">set foldlevel=99</span><br><span class="line">nnorema &lt;space&gt; za</span><br><span class="line">&quot; 括号自动补全</span><br><span class="line">inoremap ( ()&lt;LEFT&gt;</span><br><span class="line">inoremap [ []&lt;LEFT&gt;</span><br><span class="line">inoremap &#123; &#123;&#125;&lt;LEFT&gt;</span><br><span class="line">inoremap &apos; &apos;&apos;&lt;LEFT&gt;</span><br><span class="line">inoremap &quot; &quot;&quot;&lt;LEFT&gt;</span><br><span class="line">&quot; 移动分割窗口</span><br><span class="line">nmap &lt;C-j&gt; &lt;C-W&gt;j</span><br><span class="line">nmap &lt;C-k&gt; &lt;C-W&gt;k</span><br><span class="line">nmap &lt;C-h&gt; &lt;C-W&gt;h</span><br><span class="line">nmap &lt;C-l&gt; &lt;C-W&gt;l</span><br><span class="line">&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h1><h2 id="Vim-Plug"><a href="#Vim-Plug" class="headerlink" title="Vim-Plug"></a>Vim-Plug</h2><p>使用它可以有效的管理vim的插件，简单说，是管理vim插件的插件。 <a href="https://github.com/junegunn/vim-plug" rel="noopener external nofollow noreferrer" target="_blank">官方地址</a></p>
+<p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fLo ~/.vim/<span class="built_in">autoload</span>/plug.vim --create-dirs \</span><br><span class="line">    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim</span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 通过Vim-Plug配置自己的插件</span></span><br><span class="line"><span class="keyword">call</span> plug#begin(<span class="string">'~/.vim/plugged'</span>)</span><br><span class="line"></span><br><span class="line">Plug <span class="string">'junegunn/vim-easy-align'</span>  <span class="comment">" 需要安装的插件，对应github仓库名称</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">call</span> plug#end()</span><br></pre></td></tr></table></figure>
+
+<p>常用的命令有：</p>
+<ul>
+<li>PluginInstall：安装插件</li>
+<li>PlugUpdate：安装或更新插件</li>
+<li>PlugClean：清理未安装的插件（针对之前安装过，后面又不需要的插件）</li>
+<li>PlugStaus：检查插件的状态</li>
+</ul>
+<h2 id="nerdtree"><a href="#nerdtree" class="headerlink" title="nerdtree"></a>nerdtree</h2><p>显示当前路径下的目录树。<a href="https://github.com/preservim/nerdtree" rel="noopener external nofollow noreferrer" target="_blank">官方地址</a></p>
+<p>安装：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 通过vim-plug配置安装</span></span><br><span class="line">Plug <span class="string">'preservim/nerdtree'</span>       <span class="comment">" 目录树</span></span><br></pre></td></tr></table></figure>
+
+<p>使用：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">map</span> <span class="symbol">&lt;C-n&gt;</span> :NERDTreeToggle<span class="symbol">&lt;CR&gt;</span>           <span class="comment">" 唤出nerdtree的快捷键</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:NERDTreeDirArrowExpandable</span> = <span class="string">'▸'</span>  <span class="comment">" 配置显示图标</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:NERDTreeDirArrowCollapsible</span> = <span class="string">'▾'</span></span><br></pre></td></tr></table></figure>
+
+<p>这样使用<code>Ctrl + n</code>或者<code>:NERDTreeToggle</code>命令，就能显示当前文件目录。在NERDTREE窗口可以使用<code>?</code>显示所有的快捷操作帮助。  </p>
+<h2 id="gruvbox"><a href="#gruvbox" class="headerlink" title="gruvbox"></a>gruvbox</h2><p>配置vim主题，这里使用gruvbox。  </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 通过vim-plug配置安装</span></span><br><span class="line">Plug <span class="string">'morhetz/gruvbox'</span>           <span class="comment">" 配色主题</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" 配置主题</span></span><br><span class="line"><span class="keyword">colorscheme</span> gruvbox</span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-airline"><a href="#vim-airline" class="headerlink" title="vim-airline"></a>vim-airline</h2><p>airline加强了vim的状态栏。<a href="https://github.com/vim-airline/vim-airline" rel="noopener external nofollow noreferrer" target="_blank">官方地址</a></p>
+<p>安装：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 通过vim-plug配置安装</span></span><br><span class="line">Plug <span class="string">'vim-airline/vim-airline'</span>   <span class="comment">" 状态栏</span></span><br></pre></td></tr></table></figure>
+
+<p>使用：<br>为了显示airline状态栏特色的小图标，需要安装PowerLine字体。安装PowerLine，并安装自己喜欢的PowerFont字体。<br>airline配置对应的字体。  </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 字体</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:airline_powerline_fonts</span> = <span class="number">1</span></span><br><span class="line"><span class="keyword">set</span> guifont=Monaco\ <span class="keyword">for</span>\ Powerline:h12</span><br></pre></td></tr></table></figure>
+
+<p>airline能够显示vim的buffer列表，方便切换已关闭的文件，默认是关闭的。这里配置开启，并设置快捷键。  </p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 显示buffer，并设置快捷键</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:airline</span>#extensions#tabline#enabled = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:airline</span>#extensions#tabline#buffer_idx_mode = <span class="number">1</span></span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">1</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab1</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">2</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab2</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">3</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab3</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">4</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab4</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">5</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab5</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">6</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab6</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">7</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab7</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">8</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab8</span><br><span class="line"><span class="keyword">nmap</span> <span class="symbol">&lt;leader&gt;</span><span class="number">9</span> <span class="symbol">&lt;Plug&gt;</span>AirlineSelectTab9</span><br></pre></td></tr></table></figure>
+
+<h2 id="coc-nvim"><a href="#coc-nvim" class="headerlink" title="coc.nvim"></a>coc.nvim</h2><p>coc.nvim是国人开发的：新的代码补全插件管理平台。相对于YCM插件，它的安装比较简单，速度也比较快。能满足日常使用。<br><a href="https://github.com/neoclide/coc.nvim" rel="noopener external nofollow noreferrer" target="_blank">官方地址</a></p>
+<p>安装：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 通过vim-plug配置安装</span></span><br><span class="line">Plug <span class="string">'neoclide/coc.nvim'</span>, &#123;<span class="string">'branch'</span>: <span class="string">'release'</span>&#125;  <span class="comment">" 代码提示</span></span><br></pre></td></tr></table></figure>
+
+<p>使用：<br>coc.nvim是一个管理插件的插件，类似于vim-Plug。<br>可通过<a href="https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions" rel="noopener external nofollow noreferrer" target="_blank">coc-extensions</a>查看支持的插件。</p>
+<p>常用命令：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:CocInstall coc-<span class="keyword">python</span>     <span class="comment">" 安装插件</span></span><br><span class="line">:CocUninstall coc-<span class="keyword">python</span>   <span class="comment">" 卸载插件</span></span><br><span class="line">:CocList extensions        <span class="comment">" 查看已安装的插件</span></span><br></pre></td></tr></table></figure>
+
+<p>使用Tab键进行补全选择。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 使用tab进行补全</span></span><br><span class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;silent&gt;</span><span class="symbol">&lt;expr&gt;</span> <span class="symbol">&lt;TAB&gt;</span></span><br><span class="line">      \ <span class="built_in">pumvisible</span>() ? <span class="string">"\&lt;C-n&gt;"</span> :</span><br><span class="line">      \ <span class="symbol">&lt;SID&gt;</span>check_back_space() ? <span class="string">"\&lt;TAB&gt;"</span> :</span><br><span class="line">      \ coc#refresh()</span><br><span class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;expr&gt;</span><span class="symbol">&lt;S-TAB&gt;</span> <span class="built_in">pumvisible</span>() ? <span class="string">"\&lt;C-p&gt;"</span> : <span class="string">"\&lt;C-h&gt;"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">s</span>:<span class="title">check_back_space</span><span class="params">()</span> <span class="title">abort</span></span></span><br><span class="line">  <span class="keyword">let</span> <span class="keyword">col</span> = <span class="keyword">col</span>(<span class="string">'.'</span>) - <span class="number">1</span></span><br><span class="line">  <span class="keyword">return</span> !col || <span class="built_in">getline</span>(<span class="string">'.'</span>)[<span class="keyword">col</span> - <span class="number">1</span>]  =~# <span class="string">'\s'</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="vim-easy-align"><a href="#vim-easy-align" class="headerlink" title="vim-easy-align"></a>vim-easy-align</h2><p>一个快速对齐的插件，方便注释、命名等进行自动对齐，让排版更好看。<a href="https://github.com/junegunn/vim-easy-align" rel="noopener external nofollow noreferrer" target="_blank">官方地址</a></p>
+<p>安装：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">" 通过vim-plug配置安装</span></span><br><span class="line">Plug <span class="string">'junegunn/vim-easy-align'</span>   <span class="comment">" 对齐插件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" 绑定快捷键，快速进入easy-align插件</span></span><br><span class="line"><span class="keyword">xmap</span> ga <span class="symbol">&lt;Plug&gt;</span>(EasyAlign)</span><br><span class="line"><span class="keyword">nmap</span> ga <span class="symbol">&lt;Plug&gt;</span>(EasyAlign)</span><br></pre></td></tr></table></figure>
+
+<p>使用：<br>使用<code>V</code>键快速选择需要对齐的区域，在使用<code>ga</code>快捷键进行easy-align模式，输入对齐命令。<br>命令可见官方介绍，比较详细。</p>
+
+    </div>
+
+    
+    
+    
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>邱鹤峰</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.qiuhefeng.com/Vim/" title="Vim">http://www.qiuhefeng.com/Vim/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/iTerm2/" rel="next" title="iTerm2">
+                  <i class="fa fa-chevron-left"></i> iTerm2
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/avatar.jpg"
+      alt="邱鹤峰">
+  <p class="site-author-name" itemprop="name">邱鹤峰</p>
+  <div class="site-description motion-element" itemprop="description">Live in the present. Real Moments.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/qiuhefeng" title="GitHub &rarr; https://github.com/qiuhefeng" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:hefeng.qiu@qq.com" title="E-Mail &rarr; mailto:hefeng.qiu@qq.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener external nofollow noreferrer" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用配置"><span class="nav-number">2.</span> <span class="nav-text">常用配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#插件安装"><span class="nav-number">3.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vim-Plug"><span class="nav-number">3.1.</span> <span class="nav-text">Vim-Plug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nerdtree"><span class="nav-number">3.2.</span> <span class="nav-text">nerdtree</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gruvbox"><span class="nav-number">3.3.</span> <span class="nav-text">gruvbox</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-airline"><span class="nav-number">3.4.</span> <span class="nav-text">vim-airline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#coc-nvim"><span class="nav-number">3.5.</span> <span class="nav-text">coc.nvim</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-easy-align"><span class="nav-number">3.6.</span> <span class="nav-text">vim-easy-align</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">邱鹤峰</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+      </div>
+
+    
+
+  </div>
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.3.0"></script>
+  <script src="/js/motion.js?v=7.3.0"></script>
+
+
+  <script src="/js/schemes/muse.js?v=7.3.0"></script>
+
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/scrollspy.js?v=7.3.0"></script>
+<script src="/js/post-details.js?v=7.3.0"></script>
+
+
+    
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'bS94DKuXQxmyvgCcrupuhx9A-gzGzoHsz',
+    appKey: 'qEtVc4mx5jIHp4fn12rWXYuR',
+    placeholder: ' ',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

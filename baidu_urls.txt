@@ -1,4 +1,5 @@
-http://www.qiuhefeng.com/iterm2-oh-my-zsh-mvim/
+http://www.qiuhefeng.com/Vim/
+http://www.qiuhefeng.com/iTerm2/
 http://www.qiuhefeng.com/SimpleCMDB/
 http://www.qiuhefeng.com/111-01-django日志系统/
 http://www.qiuhefeng.com/110-01-logging模块/

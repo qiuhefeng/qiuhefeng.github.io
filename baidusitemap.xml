@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://www.qiuhefeng.com/111-01-django%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2020-09-07T06:27:26.132Z</lastmod>
+  </url>  <url>
     <loc>http://www.qiuhefeng.com/ipdb/</loc>
     <lastmod>2020-09-04T11:58:33.907Z</lastmod>
   </url>  <url>
@@ -15,9 +18,6 @@
   </url>  <url>
     <loc>http://www.qiuhefeng.com/Vim/</loc>
     <lastmod>2020-07-20T05:38:24.144Z</lastmod>
-  </url>  <url>
-    <loc>http://www.qiuhefeng.com/111-01-django%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2020-07-13T08:45:33.598Z</lastmod>
   </url>  <url>
     <loc>http://www.qiuhefeng.com/SimpleCMDB/</loc>
     <lastmod>2020-07-13T08:45:33.598Z</lastmod>

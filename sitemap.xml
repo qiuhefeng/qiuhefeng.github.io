@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.qiuhefeng.com/iptables%E6%A6%82%E5%BF%B5/</loc>
+    
+    <lastmod>2020-10-11T09:19:24.779Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.qiuhefeng.com/110-01-logging%E6%A8%A1%E5%9D%97/</loc>
+    
+    <lastmod>2020-10-11T09:15:09.826Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.qiuhefeng.com/111-01-django%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/</loc>
     
     <lastmod>2020-09-07T06:27:26.132Z</lastmod>
@@ -19,13 +33,6 @@
     <loc>http://www.qiuhefeng.com/taskt/</loc>
     
     <lastmod>2020-09-03T11:09:37.507Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.qiuhefeng.com/110-01-logging%E6%A8%A1%E5%9D%97/</loc>
-    
-    <lastmod>2020-09-03T09:59:15.570Z</lastmod>
     
   </url>
   
